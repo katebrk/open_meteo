@@ -2,6 +2,8 @@ import requests
 from datetime import date, timedelta
 import pandas as pd
 from sqlalchemy import create_engine, text
+import os
+from dotenv import load_dotenv
 
 def get_weather_data():
     today = date.today()
@@ -28,7 +30,8 @@ def transform(df):
     return transformed_df
 
 def save_to_db(df):
-    supabase_db_url = "postgresql+psycopg2://@db.mqttypsrsolxuhhbxpco.supabase.co:5432/postgres"
+    load_dotenv()
+    supabase_db_url = os.getenv("SUPABASE_DB_URL")
 
     engine = create_engine(supabase_db_url)
 
