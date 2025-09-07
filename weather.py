@@ -1,8 +1,11 @@
-import requests
+# standard library
+import os
 from datetime import date, timedelta
+
+# third-party libraries
+import requests
 import pandas as pd
 from sqlalchemy import create_engine, text
-import os
 from dotenv import load_dotenv
 
 def get_weather_data():
@@ -55,5 +58,6 @@ def main():
     df = get_weather_data()
     transformed_df = transform(df)
     save_to_db(transformed_df)
+    print("Success!")
 
 main()
